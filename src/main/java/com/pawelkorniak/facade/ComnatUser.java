@@ -22,6 +22,10 @@ public class ComnatUser implements UserDetails {
         this.password = login;
     }
 
+    public boolean isSubscribed(Comnat comnat){
+        return subscribedComnats.stream().anyMatch(subscribedComnat -> comnat.equals(subscribedComnat));
+    }
+
     public ComnatUser subscribeToComnat(Comnat comnat) {
         subscribedComnats.add(comnat);
         return this;

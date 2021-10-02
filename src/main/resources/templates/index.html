@@ -11,9 +11,9 @@
 <h1>Comnats</h1>
 
 
-<li th:each="comnat: ${comnats}">
-    <span th:text="${comnat.getName()}"></span>
-    <a th:href="'comnat/' + ${comnat.getName()}" th:text="${comnat.getName()}"></a>
+<li th:each="comnat: ${comnats}" th:if="${principal.isSubscribed(comnat)}">
+
+    <a th:href="'comnat/' + ${comnat.getName()}" th:text="${comnat.getName()}" th:if="${principal.isSubscribed(comnat)}"></a>
 </li>
 
 
