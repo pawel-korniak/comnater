@@ -7,8 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -16,10 +15,29 @@ import java.util.List;
 public class ComnatUser implements UserDetails {
     String login;
     String password;
+    Set<Comnat> subscribedComnats = new HashSet<>();
 
     public ComnatUser(String login) {
         this.login = login;
         this.password = login;
+    }
+
+    public ComnatUser subscribeToComnat(Comnat comnat) {
+        subscribedComnats.add(comnat);
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ComnatUser that = (ComnatUser) o;
+        return login.equals(that.login);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(login);
     }
 
     @Override

@@ -12,7 +12,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/index","/comnat/**","/sendMessage/**").hasRole("USER")
+                .antMatchers("/","/index","/comnat/**","/sendMessage/**").hasRole("USER")
                 .anyRequest().permitAll()
                 .and()
                 .formLogin().defaultSuccessUrl("/index", true)
